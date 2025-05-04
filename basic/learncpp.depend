@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1746340676 source:e:\dangkhoa\cpp\learncpp\hello.c
+	<stdio.h>
+	<stdlib.h>
+
+1746340676 source:e:\dangkhoa\cpp\learncpp\kimtuthapcanphai.c
+	<stdio.h>
+	<stdlib.h>
+
+1746340918 source:e:\dangkhoa\cpp\learncpp\kimtuthapcantrai.c
+	<stdio.h>
+	<stdlib.h>
+
