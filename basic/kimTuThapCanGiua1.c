@@ -8,11 +8,15 @@ int main()
     scanf("%d", &x);
     printf("%d\n", x);
     for (int i = 0; i < x; i++) {
-      for (int j = 0; j <= x-i; j++){
-        printf("%c", ' ');
-      }
+      // for (int j = 1; j < x-i; j++){
+      //   printf(" ");
+      // }
+      printf("%*c", x - i, "");
+      // printf("%*d",)
       for (int j = 0; j <= i; j++){
-        printf("%c %c", '*', ' ');
+        // printf("%c%c", '*', ' ');
+        // printf("* ");
+        printf("%-2c", '*');
       }
       printf("\n");
     }
