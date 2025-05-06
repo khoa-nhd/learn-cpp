@@ -12,7 +12,7 @@ double tinhGiaTri(int n)
     double giaiThua = 1;
     while (i <= n) {
         giaiThua = giaiThua*i;
-        if (fmod((double)i, 2.0) == 0){
+        if (i % 2 == 0){
             s = s - 1 / giaiThua;
         } else {
             s = s + 1/giaiThua;
