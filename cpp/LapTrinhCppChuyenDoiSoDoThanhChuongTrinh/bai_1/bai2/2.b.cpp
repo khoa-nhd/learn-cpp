@@ -1,5 +1,5 @@
 // Cho số nguyên dương n và số thực x, tính giá trị các biểu thức
-// a) s = pow(x, n-1) + pow(x, n-2)/2! + ... + x/(n-1)! + 1/n!
+// b) s = pow(x, n-1) + pow(x, n-2)/2! + ... + x/(n-1)! + 1/n!
 #include <iostream>
 #include <cmath>
 using namespace std;
