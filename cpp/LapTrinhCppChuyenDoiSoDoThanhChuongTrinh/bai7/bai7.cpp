@@ -4,16 +4,13 @@
 #include <iostream>
 using namespace std;
 void banh(int a, int b, int c){
-    int i = 0, j= 0;
-    while (i*a <= c){
-        while (j*b + i*a <= c){
-            if (i*a + j*b == c){
-                cout<<i<<" "<<j<<"\n";
-            }
-            j = j + 1;
+    int i = 0, j= 0, m = c/a;
+    while (i <= m){
+        if ((c - i*a) % b == 0){
+            j = (c - i*a) / b;
+            cout<<i<<" "<<j<<"\n";
         }
         i = i + 1;
-        j = 0;
     }
 }
 int main(){

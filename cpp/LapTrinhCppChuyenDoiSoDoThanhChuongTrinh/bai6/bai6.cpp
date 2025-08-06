@@ -3,11 +3,11 @@
 #include <cstdio>
 #include <iostream>
 using namespace std;
-void banh(int a, int b, int c, int d){
-    if ((double)a/b > (double)c/d){
-        cout<<"1";
+bool banh(int a, int b, int c, int d){
+    if ((double)a*a/b > (double)c*c/d){
+        return true;
     } else{
-        cout<<"2";
+        return false;
     }
 }
 int main(){
@@ -15,7 +15,11 @@ int main(){
     freopen("output.txt", "w", stdout);
     int a, b, c, d;
     cin>>a>>b>>c>>d;
-    banh(a, b, c, d);
+    if (banh(a, b, c, d)){
+        cout<<"1";
+    } else {
+        cout<<"2";
+    }
     return 0;
 }
 

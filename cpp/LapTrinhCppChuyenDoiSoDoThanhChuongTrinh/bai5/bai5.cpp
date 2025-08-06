@@ -3,11 +3,11 @@
 #include <cstdio>
 #include <iostream>
 using namespace std;
-void che(int a, int b, int c, int d){
+bool che(int a, int b, int c, int d){
     if ((a>=c && b>=d) || (a>=d && b>=c)){
-        cout<<"YES";
+        return true;
     } else{
-        cout<<"NO";
+        return false;
     }
 }
 int main(){
@@ -15,6 +15,10 @@ int main(){
     freopen("output.txt", "w", stdout);
     int a, b, c, d;
     cin>>a>>b>>c>>d;
-    che(a, b, c, d);
+    if (che(a, b, c, d)){
+        cout<<"YES";
+    } else {
+        cout<<"NO";
+    }
     return 0;
 }

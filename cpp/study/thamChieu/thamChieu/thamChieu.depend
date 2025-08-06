@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1752851487 source:d:\dangkhoa\cpp\learn-cpp\cpp\thamchieu\thamchieu\thamchieu.cpp
+	<iostream>
+	<cstdio>
+
