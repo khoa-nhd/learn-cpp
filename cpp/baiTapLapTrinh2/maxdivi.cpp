@@ -33,8 +33,8 @@ int maxdivi(int n){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("MAXDIVI.INP", "r", stdin);
+    freopen("MAXDIVI.OUT", "w", stdout);
     int i = 0;
     while(cin >> a[i]){
         i += 1;

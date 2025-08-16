@@ -1,6 +1,4 @@
 # depslib dependency file v1.0
-1754575641 source:d:\dangkhoa\cpp\learn-cpp\cpp\test\test1.cpp
-	<iostream>
-	<cstdio>
-	<vector>
+1755343188 source:d:\dangkhoa\cpp\learn-cpp\cpp\test\test1.cpp
+	<bits/stdc++.h>
 
