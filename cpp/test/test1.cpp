@@ -2,32 +2,24 @@
 using namespace std;
 #define maxN 1000000
 
-int a[maxN] = {};
+long long a[maxN] = {};
+int n;
 
-int gcd(int a, int b){
-    if(a == 0){
-        return b;
+void readData(){
+    cin >> n;
+    for(int i = 0; i < n; ++i){
+        cin >> a[i];
     }
-    if(b == 0){
-        return a;
-    }
-    while(b != 0){
-        int m = a;
-        a = b;
-        b = m%b;
-    }
-    return a;
 }
 
-int maxdivi(int n){
-    if(n == 2){
-        return abs(a[0] - a[1]);
+long long maxsubarray(){
+    long long maxGlobal = -numeric_limits<long long>::infinity();
+    long long maxCurrent = 0;
+    for(int i = 0; i < n; ++i){
+        maxCurrent = max(a[i], a[i] + maxCurrent);
+        maxGlobal = max(maxGlobal, maxCurrent);
     }
-    int g = gcd(abs(a[0] - a[1]), abs(a[1] - a[2]));
-    for(int i = 3; i < n; ++i){
-        g = gcd(g, abs(a[i-1] - a[i]));
-    }
-    return g;
+    return maxGlobal;
 }
 
 int main(){
@@ -35,11 +27,9 @@ int main(){
     cin.tie(0);
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
-    int i = 0;
-    while(cin >> a[i]){
-        i += 1;
-    }
-    int m = maxdivi(i);
+    readData();
+    long long m;
+    m = maxsubarray();
     cout << m;
     return 0;
 }

@@ -7,7 +7,8 @@ using namespace std;
 void tinhGiaTri(int n)
 {
     int i = 2;
-    while (i<=sqrt(n)) {
+    int m = sqrt(n);
+    while (i<=m) {
         if (n%i == 0){
             n = n / i;
             cout<<i<<" ";
