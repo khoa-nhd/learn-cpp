@@ -2,7 +2,14 @@
 using namespace std;
 #define maxN 1000000
 
-int a[maxN] = {8, 2, 0, 2, 0, 2, 0, 0, 0}, n = 9, i = 0;
+int a[maxN] = {}, n, i = 0;
+
+void readData(){
+    cin >> n;
+    for(int i = 0; i < n; ++i){
+        cin >> a[i];
+    }
+}
 
 void brackets(int b, int pos){
     if(i >= n){
@@ -22,6 +29,11 @@ void brackets(int b, int pos){
 }
 
 int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    freopen("BRACKETS.INP", "r", stdin);
+    freopen("BRACKETS.OUT", "w", stdout);
+    readData();
     for(i = 0; i < n; i){
         brackets(a[i], i);
     }
