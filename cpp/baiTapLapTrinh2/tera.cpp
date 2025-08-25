@@ -3,7 +3,7 @@ using namespace std;
 #define maxN 1005
 typedef long long ll;
 
-int n, l;
+ll n, l;
 ll xanh[maxN], dor[maxN], tim[maxN], vang[maxN];
 
 void readData(){
@@ -24,22 +24,22 @@ void readData(){
 
 ll teraa(){
     ll result = 0;
-    unordered_map<ll, ll> xanhdo, timvang;
+    vector<ll> xanhdo, timvang;
     for(int i = 0; i < n; ++i){
         for(int j = 0; j < n; ++j){
-            xanhdo[xanh[i]+dor[j]] += 1;
+            xanhdo.push_back(xanh[i] + dor[j]);
         }
     }
     for(int i = 0; i < n; ++i){
         for(int j = 0; j < n; ++j){
-            timvang[tim[i]+vang[j]] += 1;
+            timvang.push_back(tim[i] + vang[j]);
         }
     }
-    for (const auto &val : xanhdo) {
-        auto it = timvang.find(l - val.first);
-        if (it != timvang.end()) {
-            result += val.second * it->second;
-        }
+    sort(timvang.begin(), timvang.end());
+    for (ll sum : xanhdo) {
+        ll target = l - sum;
+        auto range = equal_range(timvang.begin(), timvang.end(), target);
+        result += distance(range.first, range.second);
     }
     return result;
 }
@@ -47,8 +47,8 @@ ll teraa(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("TERA.INP", "r", stdin);
+    freopen("TERA.OUT", "w", stdout);
     readData();
     ll m;
     m = teraa();

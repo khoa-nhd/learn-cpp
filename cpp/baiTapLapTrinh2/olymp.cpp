@@ -4,11 +4,10 @@ using namespace std;
 typedef long long ll;
 
 ll n, c, k;
-vector<pair<ll, ll>> a;
+pair<ll, ll> a[maxN];
 
 void readData(){
     cin >> n >> c >> k;
-    a.resize(n+1);
     for(int i = 0; i < n; ++i){
         cin >> a[i].first >> a[i].second;
     }
@@ -16,9 +15,11 @@ void readData(){
 
 ll olymp(){
     ll result = 0;
-    ll soLanCan[n+1];
+    ll soLanCan[maxN];
     for(int i = 0; i < n; ++i) {
-        if(a[i].second > 0){
+        if(a[i].first >= k){
+            soLanCan[i] = 0;
+        } else if(a[i].second > 0){
             soLanCan[i] = ((k - a[i].first) + a[i].second - 1) / a[i].second;
         } else{
             soLanCan[i] = c + 1;
