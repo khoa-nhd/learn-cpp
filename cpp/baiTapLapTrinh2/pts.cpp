@@ -15,13 +15,29 @@ void readData(){
     }
 }
 
+ll searchsmaller(int d, int c, ll target){
+    ll result = -1;
+    while(d <= c){
+        int half = (d+c)/2;
+        if(a[half] < target){
+            result = half;
+            d = half + 1;
+        } else {
+            c = half - 1;
+        }
+    }
+    return result;
+}
+
 ll pts(){
     ll result = 0;
     sort(a, a+n);
-    sort(b, b+n);
-    for(int i = 0; i <= m; ++i){
-        auto it = lower_bound(a, a+n, b[i]);
-        result += it - a;
+    sort(b, b+m);
+    for(int i = 0; i < m; ++i){
+        ll smallerpos = searchsmaller(0, n-1, b[i]);
+        if(smallerpos != -1){
+            result += smallerpos + 1;
+        }
     }
     return result;
 }

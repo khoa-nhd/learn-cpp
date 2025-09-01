@@ -1,9 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
+#define maxN 1000000
 typedef long long ll;
 
 ll m, n, k;
-vector<ll> a, b;
+vector<ll> a;
+vector<pair<ll, ll>> b;
 
 void readData(){
     cin >> n >> m >> k;
@@ -13,34 +15,27 @@ void readData(){
         cin >> a[i];
     }
     for(int i = 0; i < m; ++i){
-        cin >> b[i];
+        ll temp;
+        cin >> temp;
+        b[i].first = temp - k;
+        b[i].second = temp + k;
     }
-}
-
-ll searchh(int d, int c, ll target){
-    while(d <= c){
-        int half = (d+c)/2;
-        if(b[half] >= target - k && b[half] <= target + k){
-            return half;
-        }
-        if(target < b[half]){
-            c = half - 1;
-        } else{
-            d = half + 1;
-        }
-    }
-    return -1;
 }
 
 ll apartments(){
     ll result = 0;
+    sort(a.begin(), a.end());
     sort(b.begin(), b.end());
-    for(int i = 0; i < n; ++i){
-        int cuoi = (int)b.size() - 1;
-        ll findd = searchh(0, cuoi, a[i]);
-        if(findd != -1){
+    int i = 0, j = 0;
+    while(i < n && j < m){
+        if(a[i] >= b[j].first && a[i] <= b[j].second){
+            i += 1;
+            j += 1;
             result += 1;
-            b.erase(b.begin() + findd);
+        } else if(a[i] > b[j].second){
+            j += 1;
+        } else{
+            i += 1;
         }
     }
     return result;

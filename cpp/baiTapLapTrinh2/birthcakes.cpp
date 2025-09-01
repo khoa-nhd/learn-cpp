@@ -17,7 +17,7 @@ ll birthcakes() {
     ll result = n;
     sort(a, a+n);
     int i = 0, j = n/2;
-    while(i <= n/2 && j <= n){
+    while(i < n/2 && j < n){
         if(a[i]*2 <= a[j]){
             result -= 1;
             i += 1;
@@ -32,8 +32,8 @@ ll birthcakes() {
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("BIRTHCAKES.INP", "r", stdin);
+    freopen("BIRTHCAKES.OUT", "w", stdout);
     readData();
     ll m;
     m = birthcakes();
