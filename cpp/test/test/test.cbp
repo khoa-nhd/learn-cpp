@@ -31,7 +31,6 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="../test1.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
