@@ -31,6 +31,9 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="input.txt" />
+		<Unit filename="output.txt" />
+		<Unit filename="testcode.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

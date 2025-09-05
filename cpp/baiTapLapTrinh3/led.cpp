@@ -23,10 +23,11 @@ void lonNhat(ll n, ll k) {
 }
 
 void nhoNhat(ll n, ll k){
-    cout << 1;
-    k = k - 2;
-    for(int i = 1; i < n; ++i){
+    for(int i = 0; i < n; ++i){
         for(int j = 0; j <= 9; ++j){
+            if(i == 0 && j == 0) {
+                continue;
+            }
             ll cost = values[j];
             ll rempos = n - i - 1;
             ll remk = k - cost;
@@ -45,8 +46,8 @@ void nhoNhat(ll n, ll k){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
+    freopen("LED.INP", "r", stdin);
+    freopen("LED.OUT", "w", stdout);
     ll n, k;
     cin >> n >> k;
     if(n*2 > k || n*7 < k){
