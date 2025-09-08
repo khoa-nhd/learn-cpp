@@ -25,8 +25,8 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
 
-    freopen("input.INP", "r", stdin);
-    freopen("output.OUT", "w", stdout);
+    freopen("REPSTR.INP", "r", stdin);
+    freopen("REPSTR.OUT", "w", stdout);
 
     string s;
     ll n;
