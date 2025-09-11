@@ -15,40 +15,21 @@ void readData(){
     }
 }
 
-ll dem(int d, int c, ll target){
-    ll result;
-    while(d <= c){
-        ll half = (d+c)/2;
-        if(a[half] > target){
-            result = half;
-            c = half-1;
-        } else{
-            d = half+1;
-        }
-    }
-    return result;
-}
-
 ll merlin(){
-    ll tong = 0;
+    sort(a, a + n);
+    ll sum = 0;
     for(int i = 0; i < n; ++i){
-        tong += a[i];
+        sum += a[i];
     }
-    vector<ll> uoc;
-    ll squareroot = sqrt(tong);
-    for(int i = 1; i <= squareroot; ++i){
-        if(tong % i == 0){
-            uoc.push_back(i);
-            uoc.push_back(tong/i);
+    ll s1 = 0, s2 = 0;
+    for(int i = n-1; i >= 0; --i){
+        s1 = 0;
+        for(int j = n-1; j > i; --j){
+            s1 += a[j];
         }
-    }
-    sort(uoc.begin(), uoc.end());
-    sort(a, a+n);
-    for(int i = (int)uoc.size()-1; i >= 0; --i){
-        ll target = tong/uoc[i];
-        ll demm = dem(0, n-1, target);
-        if(target >= maxx && uoc[i] <= n && demm >= uoc[i]){
-            return n - uoc[i];
+        s2 = a[i]*(i+1) - (sum - s1);
+        if(s1 >= s2){
+            return n-(i+1);
         }
     }
     return n-1;
