@@ -3,39 +3,42 @@ using namespace std;
 #define maxN 1000000
 typedef long long ll;
 
-ll n;
-
-struct mystruct {
-    ll start;
-    ll finish;
-    ll pos;
-} a[maxN];
+ll n, k, a[maxN];
 
 void readData(){
-    cin >> n;
+    cin >> n >> k;
     for(int i = 0; i < n; ++i){
-        cin >> a[i].start >> a[i].finish;
-        a[i].pos = i;
+        cin >> a[i];
     }
 }
 
-void meeting(){
-    sort(a, a+n, [](const mystruct &a, const mystruct &b){
-            return a.finish < b.finish;
-    });
-    ll prevEnd = 0;
-    vector<ll> result;
-    for(int i = 0; i < n; ++i){
-        if(a[i].start >= prevEnd){
-            prevEnd = a[i].finish;
-            result.push_back(a[i].pos+1);
+ll subseq(){
+    ll maxGlobal, maxCurrent = 0;
+    ll startCurrent = 0, endCurrent = k-1;
+    for(int i = 0; i < k; ++i){
+        maxCurrent += a[i];
+    }
+    maxGlobal = maxCurrent;
+    while (endCurrent < n){
+        if(maxCurrent - a[startCurrent] > maxCurrent && endCurrent < n-1){
+            ll temp = a[startCurrent], temp1 = a[endCurrent+1];
+            maxCurrent = maxCurrent - a[startCurrent] + a[endCurrent+1];
+            startCurrent += 1;
+            endCurrent += 1;
+        } else if(maxCurrent < 0 && endCurrent + k < n){
+            maxCurrent = 0;
+            for(int i = 0; i < k; ++i){
+                maxCurrent += a[startCurrent+i+1];
+            }
+            startCurrent += 1;
+            endCurrent = startCurrent + k - 1;
+        } else{
+            maxCurrent = maxCurrent + a[endCurrent+1];
+            endCurrent += 1;
         }
+        maxGlobal = max(maxCurrent, maxGlobal);
     }
-
-    cout << result.size() << "\n";
-    for(int i = 0; i < result.size(); ++i){
-        cout << result[i] << "\n";
-    }
+    return maxGlobal;
 }
 
 int main(){
@@ -44,6 +47,8 @@ int main(){
     freopen("i.INP", "r", stdin);
     freopen("o.OUT", "w", stdout);
     readData();
-    meeting();
+    ll m;
+    m = subseq();
+    cout << m;
     return 0;
 }

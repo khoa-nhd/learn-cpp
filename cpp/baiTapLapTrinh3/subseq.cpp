@@ -13,7 +13,32 @@ void readData(){
 }
 
 ll subseq(){
-
+    ll maxGlobal, maxCurrent = 0;
+    ll startCurrent = 0, endCurrent = k-1;
+    for(int i = 0; i < k; ++i){
+        maxCurrent += a[i];
+    }
+    maxGlobal = maxCurrent;
+    while (endCurrent < n){
+        if(maxCurrent - a[startCurrent] > maxCurrent && endCurrent < n-1){
+            ll temp = a[startCurrent], temp1 = a[endCurrent+1];
+            maxCurrent = maxCurrent - a[startCurrent] + a[endCurrent+1];
+            startCurrent += 1;
+            endCurrent += 1;
+        } else if(maxCurrent < 0 && endCurrent + k < n){
+            maxCurrent = 0;
+            for(int i = 0; i < k; ++i){
+                maxCurrent += a[startCurrent+i+1];
+            }
+            startCurrent += 1;
+            endCurrent = startCurrent + k - 1;
+        } else{
+            maxCurrent = maxCurrent + a[endCurrent+1];
+            endCurrent += 1;
+        }
+        maxGlobal = max(maxCurrent, maxGlobal);
+    }
+    return maxGlobal;
 }
 
 int main(){
