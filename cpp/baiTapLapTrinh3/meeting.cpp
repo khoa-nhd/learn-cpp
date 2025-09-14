@@ -41,8 +41,8 @@ void meeting(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("MEETING.INP", "r", stdin);
+    freopen("MEETING.OUT", "w", stdout);
     readData();
     meeting();
     return 0;
