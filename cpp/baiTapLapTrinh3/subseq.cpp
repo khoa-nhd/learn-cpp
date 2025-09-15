@@ -13,30 +13,19 @@ void readData(){
 }
 
 ll subseq(){
-    ll maxGlobal, maxCurrent = 0;
+    ll maxGlobal = LLONG_MIN, maxCurrent = 0;
     ll startCurrent = 0, endCurrent = k-1;
-    for(int i = 0; i < k; ++i){
-        maxCurrent += a[i];
+    vector <ll> prefixSum(n+1, 0);
+    for(int i = 1; i <= n; ++i){
+        prefixSum[i] = prefixSum[i-1] + a[i-1];
     }
-    maxGlobal = maxCurrent;
-    while (endCurrent < n){
-        if(maxCurrent - a[startCurrent] > maxCurrent && endCurrent < n-1){
-            ll temp = a[startCurrent], temp1 = a[endCurrent+1];
-            maxCurrent = maxCurrent - a[startCurrent] + a[endCurrent+1];
-            startCurrent += 1;
-            endCurrent += 1;
-        } else if(maxCurrent < 0 && endCurrent + k < n){
-            maxCurrent = 0;
-            for(int i = 0; i < k; ++i){
-                maxCurrent += a[startCurrent+i+1];
-            }
-            startCurrent += 1;
-            endCurrent = startCurrent + k - 1;
-        } else{
-            maxCurrent = maxCurrent + a[endCurrent+1];
-            endCurrent += 1;
-        }
-        maxGlobal = max(maxCurrent, maxGlobal);
+    ll minn = 0;
+    int j = 1;
+    for(int i = k + 1; i <= n; ++i){
+        minn = min(minn, prefixSum[j]);
+        maxCurrent = prefixSum[i] - minn;
+        maxGlobal = max(maxGlobal, maxCurrent);
+        j++;
     }
     return maxGlobal;
 }
