@@ -3,7 +3,6 @@ using namespace std;
 typedef long long ll;
 
 vector<ll> a;
-vector<ll> b;
 
 void readData(){
     ll temp;
@@ -12,34 +11,34 @@ void readData(){
     }
 }
 
-bool mySearch(int d, int c, ll target){
-    while(d <= c){
-        ll half = (d+c)/2;
-        if(b[half] == target){
-            return true;
-        }
-        if(b[half] < target){
-            d = half + 1;
-        } else{
-            c = half - 1;
-        }
-    }
-    return false;
-}
-
 ll gifts(){
     ll result = 0;
+    sort(a.begin(), a.end());
     ll n = a.size();
+    ll left, right;
     for(int i = 0; i < n; ++i){
-        for(int j = i + 1; j < n; ++j){
-            ll temp = a[i] + a[j];
-            b.push_back(temp);
-        }
-    }
-    sort(b.begin(), b.end());
-    for(int i = 0; i < n; ++i){
-        if(mySearch(0, b.size()-1, a[i]*2)){
-            result += 1;
+        right = n-1;
+        left = 0;
+        while(left < right){
+            if(left == i){
+                left += 1;
+                continue;
+            }
+            if(right == i){
+                right -= 1;
+                continue;
+            }
+            ll target = a[i]*2;
+            ll sum = a[left] + a[right];
+            if(sum == target){
+                result += 1;
+                break;
+            }
+            if(sum > target){
+                right -= 1;
+            } else{
+                left += 1;
+            }
         }
     }
     return result;

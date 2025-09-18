@@ -33,8 +33,8 @@ ll phanmay(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("PHANMAY.INP", "r", stdin);
+    freopen("PHANMAY.OUT", "w", stdout);
     readData();
     ll m;
     m = phanmay();

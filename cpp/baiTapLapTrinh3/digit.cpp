@@ -25,6 +25,10 @@ void digit(){
             a.push_back(chuSo);
         }
     }
+    while(k > 0){
+        a.pop_back();
+        k -= 1;
+    }
     for(int i : a){
         cout << i;
     }
