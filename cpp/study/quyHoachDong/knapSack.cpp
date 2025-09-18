@@ -3,10 +3,11 @@ using namespace std;
 
 #define MAX_COL 1000
 
-const int object = 5;
-int value[] = {2, 2, 4, 5, 3}, weight[] = {3, 1, 3, 4, 2};
-const int capacity = 7;
-
+int object;
+int value[1005], weight[1005];
+int capacity;
+int n,x;
+int h[10000], p[10000];
 int knapsack(){
     int dp[object + 1][capacity + 1] = {0};
     for(int i = 1; i <= object; ++i){
@@ -20,9 +21,27 @@ int knapsack(){
     return dp[object][capacity];
 }
 
+void book(){
+    vector<vector<int>> dp(n, vector(n,0));
+    for(int i = 1; i < n ; i++){
+        for(int j = 1; j < n; j++){
+            dp[i][j] = dp[i - 1][j];
+            if(p[i - 1] <= j)
+            {
+                dp[i][j] = max(dp[i][j], dp[i-1][j-weight[i-1]] + value[i-1]);
+            }
+        }
+    }
+
+}
+
 int main(){
-    int m;
-    m = knapsack();
-    cout << m;
+    cin >> n >> x;
+    for(int i = 0; i < n; i++){
+        cin >> h[i];
+    }
+    for(int i = 0; i < n; i++){
+        cin >> p[i];
+    }
     return 0;
 }
