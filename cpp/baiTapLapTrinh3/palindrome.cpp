@@ -2,33 +2,43 @@
 using namespace std;
 typedef long long ll;
 
-vector<ll> b;
-ll sothutu = 0;
+ll n;
 
-void addpalindrome(ll from, ll to, ll sochuso){
-    for(int i = from; i <= to; ++i){
-        string temp = to_string(i);
-        temp += temp.substr(0, sochuso/2);
-        b.push_back(stoll(temp));
-        sothutu += 1;
+string myreverse(string s){
+    string result;
+    for(int i = s.size()-1; i >= 0; --i){
+        result += s[i];
     }
+    return result;
 }
+
+ll mu10(int somu){
+    ll result = 1;
+    for(int i = 0; i < somu; ++i){
+        result *= 10;
+    }
+    return result;
+}
+
 
 ll palindrome(ll n){
     ll sochuso = 1;
-    ll from, to;
-    while(sothutu <= n){
-        from = 1;
-        to = 9;
-        for(int i = 1; i < (sochuso+1)/2; ++i){
-            from = from*10;
-            to = to*10 + 9;
-        }
+    ll sothutu = 0;
 
-        addpalindrome(from, to, sochuso);
+    while (true) {
+        ll k = 9 * mu10((sochuso - 1) / 2);
+        if (n <= k) break;
+        n -= k;
         sochuso += 1;
     }
-    return b[n-1];
+
+    int halfLen = (sochuso + 1) / 2;
+    ll start = mu10(halfLen - 1);
+    ll first = start + (n - 1);
+
+    string result = to_string(first);
+    result += myreverse(result.substr(0, sochuso/2));
+    return stoll(result);
 }
 
 int main(){
@@ -36,7 +46,6 @@ int main(){
     cin.tie(0);
     freopen("PALINDROME.INP", "r", stdin);
     freopen("PALINDROME.OUT", "w", stdout);
-    ll n;
     cin >> n;
     ll m;
     m = palindrome(n);
