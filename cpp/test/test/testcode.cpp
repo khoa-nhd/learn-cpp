@@ -14,7 +14,7 @@ void readData(){
 
 ll lamps(){
     bool thay = false;
-    ll result = -1;
+    ll result = 1;
     ll current = 1;
     ll prev;
     ll giatrisosanh = a[0];
@@ -33,7 +33,13 @@ ll lamps(){
                 giatrisosanh = a[i];
             }
         }
+        if(i == n - 1 && !thay){
+            current += 1;
+        }
         result = max(result, current);
+    }
+    if(result > n){
+        result = n;
     }
     return result;
 }
