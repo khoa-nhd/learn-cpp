@@ -66,6 +66,7 @@ void decode(){
                 } else{
                     i -= mystack.back().size();
                     mystack.pop_back();
+                    result.pop_back();
                 }
             }
             if(mystack.size() == 0){
