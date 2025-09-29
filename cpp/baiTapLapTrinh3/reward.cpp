@@ -33,8 +33,8 @@ ll reward(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("REWARD.INP", "r", stdin);
+    freopen("REWARD.OUT", "w", stdout);
     readData();
     ll m = reward();
     cout << m;
