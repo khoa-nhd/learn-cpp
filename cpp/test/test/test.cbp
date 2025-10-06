@@ -32,7 +32,7 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="i.inp" />
-		<Unit filename="o.OUT" />
+		<Unit filename="o.out" />
 		<Unit filename="testcode.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

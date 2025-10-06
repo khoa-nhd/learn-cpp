@@ -18,8 +18,8 @@ void readData(){
     for(int i = 0; i < n; ++i){
         cin >> input[i].a >> input[i].b >> input[i].c;
         tongdaya += input[i].a;
-        loigiaib.push_back({abs(input[i].b - input[i].a), i});
-        loigiaic.push_back({abs(input[i].c - input[i].a), i});
+        loigiaib.push_back({input[i].b - input[i].a, i});
+        loigiaic.push_back({input[i].c - input[i].a, i});
     }
 }
 
@@ -37,7 +37,7 @@ void cinema(){
         cout << tongdaya + loigiaib[0].first + loigiaic[0].first << "\n";
         cout << loigiaib[0].second + 1 << " " << loigiaic[0].second + 1;
     } else{
-        if(loigiaib[0].first > loigiaic[0].first){
+        if(loigiaib[0].first + loigiaic[1].first > loigiaib[1].first + loigiaic[0].first){
             cout << tongdaya + loigiaib[0].first + loigiaic[1].first << "\n";
             cout << loigiaib[0].second + 1 << " " << loigiaic[1].second + 1;
         } else{
