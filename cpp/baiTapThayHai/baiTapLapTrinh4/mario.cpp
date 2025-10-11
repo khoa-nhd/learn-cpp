@@ -15,14 +15,14 @@ void readData(){
 }
 
 bool checkPossible(ll energy){
-    if(energy > maxVal){
-        return true;
-    }
     for(int i = 0; i < n; ++i){
         if(energy >= a[i]){
             energy += abs(energy - a[i]);
         } else{
             energy -= abs(energy - a[i]);
+        }
+        if(energy > maxVal){
+            return true;
         }
         if(energy < 0){
             return false;
@@ -49,8 +49,8 @@ ll mario(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("MARIO.INP", "r", stdin);
+    freopen("MARIO.OUT", "w", stdout);
     readData();
     ll result;
     result = mario();
