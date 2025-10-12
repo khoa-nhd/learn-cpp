@@ -55,8 +55,8 @@ ll lineup(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("LINEUP.INP", "r", stdin);
+    freopen("LINEUP.OUT", "w", stdout);
     readData();
     ll result;
     result = lineup();
