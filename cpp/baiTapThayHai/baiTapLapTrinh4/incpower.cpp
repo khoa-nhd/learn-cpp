@@ -34,8 +34,8 @@ double incpower(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("INCPOWER.INP", "r", stdin);
+    freopen("INCPOWER.OUT", "w", stdout);
     readData();
     double result;
     result = incpower();
