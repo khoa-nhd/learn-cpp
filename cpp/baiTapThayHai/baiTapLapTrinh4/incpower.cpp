@@ -15,19 +15,19 @@ void readData(){
 double incpower(){
     sort(a, a + n);
     double result = p;
+//    for(int i = 0; i < n; ++i){
+//        cout << a[i] << " ";
+//    }
+//    cout << "\n";
     for(int i = 0; i < n; ++i){
-        cout << a[i] << " ";
-    }
-    cout << "\n";
-    for(int i = 0; i < n; ++i){
-        cout << result * a[i] / 100.0 << " ";
+//        cout << result * a[i] / 100.0 << " ";
         if(result * a[i] / 100.0 < d){
             result += d;
         } else{
             result += result * a[i] / 100.0;
         }
     }
-    cout << "\n";
+//    cout << "\n";
     return result;
 }
 

@@ -2,40 +2,60 @@
 using namespace std;
 typedef long long ll;
 #define maxN 100005
-#define maxN2 1000005
 
-ll n, h[maxN], a[maxN];
-ll sumEnergy[maxN2] = {};
+ll n;
+ll prefixA[maxN] = {}, prefixHxA[maxN] = {};
+pair<ll, ll> input[maxN];
 
 void readData(){
     cin >> n;
     for(int i = 0; i < n; ++i){
-        cin >> h[i];
+        cin >> input[i].second;
     }
     for(int i = 0; i < n; ++i){
-        cin >> a[i];
+        cin >> input[i].first;
     }
 }
 
+bool cmp(pair<ll, ll> a, pair<ll, ll> b){
+    if(a.second == b.second){
+        return a.first < b.first;
+    }
+    return a.second < b.second;
+}
+
 void fly(){
-    ll tong = 0;
-    for(int i = 0; i < n; ++i){
-        tong += a[i];
+    sort(input, input + n, cmp);
+    prefixA[0] = input[0].first;
+    prefixHxA[0] = input[0].first * input[0].second;
+    for(int i = 1; i < n; ++i){
+        prefixA[i] = prefixA[i - 1] + input[i].first;
+        prefixHxA[i] = prefixHxA[i - 1] + input[i].first * input[i].second;
     }
 
-    for(int i = 0; i < n; ++i){
-        sumEnergy[h[i]] += a[i];
-    }
-
-    ll maxx = LLONG_MIN;
-    ll maxH;
-    for(int i = 0; i < maxN2; ++i){
-        if(maxx < sumEnergy[i]){
-            maxx = sumEnergy[i];
-            maxH = i;
+    ll minEnergy = LLONG_MAX;
+    ll minH;
+    ll left, right;
+    for(int i = 1; i < n-1; ++i){
+        left = input[i].second*prefixA[i-1] - prefixHxA[i-1];
+        right = (prefixHxA[n-1] - prefixHxA[i]) - input[i].second*(prefixA[n-1] - prefixA[i]);
+        if(left + right < minEnergy){
+            minEnergy = left + right;
+            minH = input[i].second;
         }
     }
-    cout << maxH << " " << tong - maxx;
+    right = (prefixHxA[n-1] - prefixHxA[0]) - input[0].second*(prefixA[n-1] - prefixA[0]);
+    if(right < minEnergy){
+        minEnergy = right;
+        minH = input[0].second;
+    }
+    left = input[n-1].second*prefixA[n-1] - prefixHxA[n-1];
+    if(left < minEnergy){
+        minEnergy = left;
+        minH = input[n-1].second;
+    }
+
+    cout << minH << " " << minEnergy;
 }
 
 int main(){

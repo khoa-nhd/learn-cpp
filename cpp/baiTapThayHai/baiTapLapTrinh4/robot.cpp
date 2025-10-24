@@ -10,7 +10,7 @@ ll result = 0;
 
 void readData(){
     cin >> n;
-    for(int i = 1; i <= n; ++i){
+    for(int i = 0; i < n; ++i){
         cin >> a[i].first >> a[i].second;
     }
 }
@@ -60,7 +60,16 @@ void checkDiBac(ll x1, ll y1, ll x2, ll y2){
 }
 
 void robot(){
-    for(int i = 1; i <= n; ++i){
+    if(a[0].first < a[1].first){
+        huong = 'd';
+    } else if(a[0].first > a[1].first){
+        huong = 't';
+    } else if(a[0].second < a[1].second){
+        huong = 'b';
+    } else{
+        huong = 'n';
+    }
+    for(int i = 1; i < n; ++i){
         if(huong == 'd'){
             checkDiDong(a[i-1].first, a[i-1].second, a[i].first, a[i].second);
         } else if(huong == 't'){
