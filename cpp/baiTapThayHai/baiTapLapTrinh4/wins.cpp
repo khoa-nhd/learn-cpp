@@ -49,8 +49,8 @@ void wins(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("WINS.INP", "r", stdin);
+    freopen("WINS.OUT", "w", stdout);
     readData();
     wins();
     return 0;

@@ -3,33 +3,44 @@ using namespace std;
 typedef long long ll;
 #define maxN 100000
 
-ll g, s, k, n;
-ll val = 0;
+ll n, g, s, k;
+struct tien{
+    ll p, q, r;
+} a[maxN];
 
 void readData(){
     ll p, q, r;
     cin >> g >> s >> k;
     cin >> n;
     for(int i = 0; i < n; ++i){
-        cin >> p >> q >> r;
-        val += r + q*29 + p*17*29;
+        cin >> a[i].p >> a[i].q >> a[i].r;
     }
 }
-void money(){
-    ll myMoney = g*17*29 + s*29 + k;
-    if(myMoney < val){
-        cout << -1;
-        return;
-    }
-    myMoney -= val;
-    ll a, b, c;
-    c = myMoney % 29;
-    myMoney -= c;
-    b = (myMoney / 29) % 17;
-    myMoney -= b*29;
-    a = myMoney/(29*17);
 
-    cout << a << " " << b << " " << c;
+bool tru(tien a){
+    if(k < a.r){
+        k += 29;
+        s -= 1;
+    }
+    k -= a.r;
+    if(s < a.q){
+        s += 17;
+        g -= 1;
+    }
+    s -= a.q;
+    if(g < a.p) return false;
+    g -= a.p;
+    return true;
+}
+
+void money(){
+    for(int i = 0; i < n; ++i){
+        if(!tru(a[i])){
+            cout << -1;
+            return;
+        }
+    }
+    cout << g << " " << s << " " << k;
 }
 
 int main(){
