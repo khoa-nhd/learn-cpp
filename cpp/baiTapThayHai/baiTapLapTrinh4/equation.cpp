@@ -36,8 +36,8 @@ ll equation(int n){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("EQUATION.INP", "r", stdin);
+    freopen("EQUATION.OUT", "w", stdout);
     sangNguyenTo();
     ll n;
     while(cin >> n){

@@ -27,7 +27,7 @@ void chePhu(ll x1, ll y1, ll x2, ll y2, ll idx){
     for(int i = 0; i < canDong.size(); ++i){
         ll a = canDong[i].topRight.first;
         ll b = canDong[i].topRight.second;
-        if(x1 < a && a < x2 && y1 < b && b < y2){
+        if(x1 <= a && a <= x2 && y1 <= b && b <= y2){
             canDong.push_back({{x2, y1}, idx});
             break;
         }
