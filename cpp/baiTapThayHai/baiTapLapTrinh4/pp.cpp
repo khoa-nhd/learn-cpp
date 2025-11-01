@@ -25,8 +25,8 @@ ll imperfect(){
 }
 
 int main(){
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("PP.INP", "r", stdin);
+    freopen("PP.OUT", "w", stdout);
     cin >> a >> b;
     sangTongUoc();
     ll res;

@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-#define maxN 5005
+#define maxN 300005
 
 bool prime[maxN] = {};
 
@@ -18,15 +18,13 @@ void sangNguyenTo(){
     }
 }
 
-ll equation(int n){
+ll tongNguyenTo(ll n){
     ll res = 0;
     for(int i = 0; i < n; ++i){
         if(prime[i]){
-            for(int j = i; i + j < n; ++j){
-                if(prime[j]){
-                    int k = n - i - j;
-                    if(prime[k] && k >= j) res += 1;
-                }
+            ll need = n - i;
+            if(prime[need] && need > i){
+                res += 1;
             }
         }
     }
@@ -34,16 +32,11 @@ ll equation(int n){
 }
 
 int main(){
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    freopen("EQUATION.INP", "r", stdin);
-    freopen("EQUATION.OUT", "w", stdout);
     sangNguyenTo();
     ll n;
-    while(cin >> n){
-        ll res;
-        res = equation(n);
-        cout << res << "\n";
-    }
+    cin >> n;
+    ll res;
+    res = tongNguyenTo(n);
+    cout << res;
     return 0;
 }

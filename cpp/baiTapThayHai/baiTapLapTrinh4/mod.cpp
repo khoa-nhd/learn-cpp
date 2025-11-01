@@ -5,6 +5,8 @@ typedef long long ll;
 ll a, c, l, r;
 
 ll mod(){
+    if(a < c) return 0;
+    if(a == c) return  max(0LL, r - max(l, c + 1) + 1);
     ll res = 0;
     ll loop = sqrt(a - c);
     vector<ll> uoc;

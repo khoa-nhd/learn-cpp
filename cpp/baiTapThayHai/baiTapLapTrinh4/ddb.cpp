@@ -18,7 +18,7 @@ void sangNguyenTo(){
 }
 
 void prefixSum(){
-    for(int i = 1; i < 10; ++i){
+    for(int i = 1; i < maxN; ++i){
         preSum[i] = preSum[i-1];
         if(prime[i]) preSum[i] += 1;
 //        cout << preSum[i] << " ";
