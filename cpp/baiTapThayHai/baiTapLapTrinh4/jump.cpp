@@ -24,27 +24,22 @@ void tinhPhamVi(){
         ll khoangCach = phamVi[i-1].second - phamVi[i-1].first - 1;
         phamVi[i].second = phamVi[i].first + khoangCach;
     }
-//    for(int i = 0; i < 2*n; ++i){
-//        cout << phamVi[i].first << " " << phamVi[i].second << "\n";
-//    }
 }
 
 ll jump(){
     ll res = 1;
     pair<ll, ll> toaDo = {1, 1};
     for(int i = 0; i < m; ++i){
-        ll val;
         if(s[i] == 'U') toaDo.second -= 1;
         else if(s[i] == 'D') toaDo.second += 1;
         else if(s[i] == 'L') toaDo.first -= 1;
         else toaDo.first += 1;
         ll duongCheo = toaDo.first + toaDo.second - 1;
-        if(duongCheo % 2 == 1){
-            val = phamVi[duongCheo].first + (n - toaDo.second);
+        if(duongCheo % 2 == 0){
+            ll val = phamVi[duongCheo].first + toaDo.second - 1;
         } else{
-            val = phamVi[duongCheo].first + (duongCheo - n);
+            ll val = phamVi[duongCheo].first + (n - toaDo.second);
         }
-//        cout << val << "\n";
         res += val;
     }
     return res;
