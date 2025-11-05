@@ -33,8 +33,8 @@ void solving(){
 }
 
 int main(){
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("SOLVING.INP", "r", stdin);
+    freopen("SOLVING.OUT", "w", stdout);
     cin >> a >> b >> c;
     solving();
     return 0;
