@@ -23,7 +23,7 @@ ll sumNum(ll n){
 }
 
 void solving(){
-    for(int i = 1; i <= 81; ++i){
+    for(int i = 1; i <= 72; ++i){
         ll x;
         x = mu(i, a) * b + c;
         if(sumNum(x) == i && x <= 1e9){
