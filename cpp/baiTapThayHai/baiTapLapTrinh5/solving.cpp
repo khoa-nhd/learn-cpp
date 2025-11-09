@@ -23,12 +23,21 @@ ll sumNum(ll n){
 }
 
 void solving(){
-    for(int i = 1; i <= 72; ++i){
+    vector<ll> res;
+    for(int i = 1; i <= 81; ++i){
         ll x;
         x = mu(i, a) * b + c;
-        if(sumNum(x) == i && x <= 1e9){
-            cout << x << "\n";
+        if(sumNum(x) == i && x <= 1e9 && x > 0){
+            res.push_back(x);
         }
+    }
+    if(res.size() == 0){
+        cout << "No solution";
+        return;
+    }
+    sort(res.begin(), res.end());
+    for(ll x : res){
+        cout << x << "\n";
     }
 }
 
