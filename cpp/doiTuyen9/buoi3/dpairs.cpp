@@ -30,29 +30,13 @@ ll dpairs(){
     return res;
 }
 
-ll dpairs2(){
-    unordered_map<ll, ll> val;
-    ll result = 0;
-    sort(a, a + n);
-    for(int i = 0; i < n; ++i){
-        ll need = a[i] - k;
-//        cout << a[i] << " " << need << " " << val[need] << "\n";
-        if(val.find(need) != val.end()){
-            result += val[need];
-        }
-        val[a[i]] += 1;
-    }
-    return result;
-}
-
-
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     readData();
     ll res;
     if(k == 0){
-        res = dpairs2();
+        res = dpairs()/2;
     } else{
         res = dpairs();
     }
