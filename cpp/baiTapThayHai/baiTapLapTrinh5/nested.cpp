@@ -24,7 +24,7 @@ bool cmp(hcn a, hcn b){
 }
 
 bool checkInside(hcn a, hcn b){
-    if(a.x1 <= b.x1 && a.y1 <= b.y2 && a.x2 >= b.x2 && a.y2 >= b.y1) return true;
+    if(a.x1 <= b.x1 && a.y1 <= b.y1 && a.x2 >= b.x2 && a.y2 >= b.y2) return true;
     return false;
 }
 
@@ -55,8 +55,8 @@ ll nested(){
 }
 
 int main(){
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("NESTED.INP", "r", stdin);
+    freopen("NESTED.OUT", "w", stdout);
     readData();
     ll res = nested();
     cout << res;
