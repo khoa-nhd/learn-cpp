@@ -19,8 +19,8 @@ ll digit(){
 }
 
 int main(){
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("DIGIT.INP", "r", stdin);
+    freopen("DIGIT.OUT", "w", stdout);
     cin >> a >> b >> k;
     ll res;
     res = digit();
