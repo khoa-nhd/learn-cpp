@@ -134,8 +134,8 @@ ll multisourceDijkstra(){
 //}
 
 int main(){
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("FUNFAIR.INP", "r", stdin);
+    freopen("FUNFAIR.OUT", "w", stdout);
     readData();
     ll res = LLONG_MAX;
 //    for(int i = 0; i < m; ++i){

@@ -1,18 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
+typedef unsigned long long ull;
 
-ll a, b, k;
+ull a, b, k;
 
-ll mu(ll base, ll power){
-    if(power == 0) return 1;
-    ll temp = mu(base, power/2) % b;
-    if(power % 2 == 0) return (temp * temp) % b;
-    else return (((temp * temp) % b) * (base % b)) % b;
+ull nhan(ull x, ull y){
+    if(y == 0) return 0;
+    if(y % 2 == 0) return (2*nhan(x, y/2)) % b;
+    else return (nhan(x, y-1) + x) % b;
 }
 
-ll digit(){
-    ll tuSo = ((a % b) * mu(10, k)) % b;
+ull mu(ull base, ull power){
+    if(power == 0) return 1;
+    ull temp = mu(base, power/2) % b;
+    ull temp2 = nhan(temp, temp);
+    if(power % 2 == 0) return temp2;
+    else return nhan(temp2, base);
+}
+
+int digit(){
+    ll tuSo = nhan(a%b, mu(10, k-1));
     double phanSo = (double)tuSo / (double)b;
     phanSo *= 10;
     return (ll)phanSo % 10;
@@ -22,7 +30,7 @@ int main(){
     freopen("DIGIT.INP", "r", stdin);
     freopen("DIGIT.OUT", "w", stdout);
     cin >> a >> b >> k;
-    ll res;
+    int res;
     res = digit();
     cout << res;
     return 0;

@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+
+ll chocolates(){
+    ll n, res = LLONG_MAX;
+    cin >> n;
+    for(int i = 0; i < n; ++i){
+        ll temp;
+        cin >> temp;
+        res = min(res, temp);
+    }
+    return res;
+}
+
+int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+//    freopen("i.INP", "r", stdin);
+//    freopen("o.OUT", "w", stdout);
+    ll t;
+    cin >> t;
+    for(int i = 0; i < t; ++i){
+        ll res;
+        res = chocolates();
+        cout << res << "\n";
+    }
+    return 0;
+}
