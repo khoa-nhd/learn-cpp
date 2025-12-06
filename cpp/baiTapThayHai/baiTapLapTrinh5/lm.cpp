@@ -36,8 +36,8 @@ string lm(){
 }
 
 int main(){
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("LM.INP", "r", stdin);
+    freopen("LM.OUT", "w", stdout);
     cin >> n >> s;
     string res;
     res = lm();
