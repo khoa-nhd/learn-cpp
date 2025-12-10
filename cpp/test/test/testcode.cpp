@@ -19,6 +19,7 @@
 //s = (3^n-1 - 3^0) / 2
 //
 //=> fn = 3^(n-1) + 2*((3^n-1 - 3^0) / 2)
+//=> fn = 3^(n-1)*2 - 1
 // công thức tính cộng lũy thừa cùng cơ số.
 
 #include <bits/stdc++.h>
@@ -45,9 +46,8 @@ ll mu(ll base, ll power){
 ll numtris(){
     if(n == 1) return 1;
     ll res = 0;
-    res += mu(3, n-1);
-    res += nhan(2, (mu(3, n-1) - 1) / 2);
-    return res;
+    res += nhan(mu(3, n-1), 2) - 1;
+    return res % soMod;
 }
 
 int main(){
