@@ -19,33 +19,33 @@
 //s = (3^n-1 - 3^0) / 2
 //
 //=> fn = 3^(n-1) + 2*((3^n-1 - 3^0) / 2)
+//=> fn = 3^(n-1)*2 - 1
 // công thức tính cộng lũy thừa cùng cơ số.
 
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
+typedef unsigned long long ull;
 
 ll t, n;
 ll soMod = 1e9 + 7;
-
-ll nhan(ll x, ll y){
-    if(y == 0) return 0;
-    if(y % 2 == 0) return 2 * nhan(x, y/2) % soMod;
-    else return x + nhan(x, y-1) % soMod;
-}
+ll dem = 0;
 
 ll mu(ll base, ll power){
+//    dem += 1;
     if(power == 0) return 1;
-    ll temp = mu(base, power/2);
-    temp = nhan(temp, temp);
+    ull temp = mu(base, power/2) % soMod;
+    temp = temp * temp;
+    temp %= soMod;
     if(power % 2 == 0) return temp;
-    else return nhan(base, temp);
+    else return ((base % soMod) * temp) % soMod;
 }
 
 ll numtris(){
-    if(n == 1) return 1;
-    ll res = 0;
-    res += nhan(2, mu(3, n-1)) - 1;
+    ull res = 0;
+    res += ((ull)mu(3, n) * (ull)2) % soMod;
+    res -= 1;
+//    cout << dem << "\n";
     return res % soMod;
 }
 
@@ -57,10 +57,10 @@ int main(){
     cin >> t;
     for(int i = 0; i < t; ++i){
         cin >> n;
-        n += 1;
         ll res;
         res = numtris();
         cout << res << "\n";
     }
+//        cout << dem << "\n";
     return 0;
 }

@@ -70,8 +70,8 @@ void sol(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("SUMK.INP", "r", stdin);
+    freopen("SUMK.OUT", "w", stdout);
     readData();
     sol();
     return 0;
