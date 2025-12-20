@@ -101,8 +101,8 @@ ll sol(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("MARBLE.INP", "r", stdin);
-    freopen("MARBLE.OUT", "w", stdout);
+//    freopen("MARBLE.INP", "r", stdin);
+//    freopen("MARBLE.OUT", "w", stdout);
     readData();
     ll res;
     res = sol();

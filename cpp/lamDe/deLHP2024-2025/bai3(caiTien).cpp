@@ -10,7 +10,7 @@ ll result[maxN] = {};
 
 void readData(){
     cin >> n >> m;
-    if(m > 200005) m = 2000005;
+    if(m > 200003) m = 200003;
     for(int i = 0; i < n; ++i){
         cin >> luongNuoc[i];
     }
@@ -41,11 +41,13 @@ void locNuoc(){
 
     for(int i = 0; i < n; ++i){
         ll pos = greaterThanOrEqualTo(0, m-1, luongNuoc[i]);
-        if(pos != -1){
+        if(pos == 0){
+            du[0] += luongNuoc[i];
+        } else if(pos != -1){
             full[pos-1] += 1;
             du[pos] += luongNuoc[i] - preM[pos-1];
         } else{
-            du[0] += luongNuoc[i];
+            full[m-1] += 1;
         }
     }
 
@@ -65,8 +67,8 @@ void locNuoc(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-//    freopen("i.INP", "r", stdin);
-//    freopen("o.OUT", "w", stdout);
+//    freopen("locnuoc.INP", "r", stdin);
+//    freopen("locnuoc.OUT", "w", stdout);
     readData();
     locNuoc();
     return 0;
