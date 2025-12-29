@@ -56,8 +56,8 @@ void buses(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("BUSES.INP", "r", stdin);
+    freopen("BUSES.OUT", "w", stdout);
     readData();
     buses();
     return 0;
