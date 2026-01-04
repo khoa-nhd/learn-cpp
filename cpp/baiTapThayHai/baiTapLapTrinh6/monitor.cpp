@@ -14,7 +14,7 @@ void readData(){
 
 void monitor(){
     unordered_map<ll, ll> m;
-    ll maxx = LLONG_MIN, id;
+    ll maxx = 1, id = a[0];
     for(int i = 0; i < n; ++i){
         if(m.find(a[i]) == m.end()){
             m[a[i]] = i;
