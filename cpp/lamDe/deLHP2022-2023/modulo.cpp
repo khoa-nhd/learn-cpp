@@ -2,7 +2,7 @@
 using namespace std;
 typedef long long ll;
 
-ll n, a[105];
+ll n, a[1000005];
 
 void readData(){
     cin >> n;
@@ -18,7 +18,7 @@ void modulo(){
     }
     ll g = 0;
     for(int i = 1; i < n; ++i){
-        g = gcd(a[i] , g);
+        g = __gcd(a[i] , g);
     }
     ll loop = sqrt(g);
     res.insert(g);
@@ -34,8 +34,8 @@ void modulo(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+//    freopen("i.INP", "r", stdin);
+//    freopen("o.OUT", "w", stdout);
     readData();
     modulo();
     return 0;
