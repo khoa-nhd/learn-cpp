@@ -43,8 +43,8 @@ void cheapbus(){
 }
 
 int main(){
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("CHEAPBUS.INP", "r", stdin);
+    freopen("CHEAPBUS.OUT", "w", stdout);
     readData();
     cheapbus();
     return 0;
