@@ -78,8 +78,8 @@ void cprime(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("CPRIME.INP", "r", stdin);
+    freopen("CPRIME.OUT", "w", stdout);
     sang();
     cprime();
     return 0;
