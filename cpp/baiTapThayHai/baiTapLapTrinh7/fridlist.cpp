@@ -26,27 +26,28 @@ bool checkFinish(){
 
 void fridlist(){
     vector<ll> res;
+    for(int i = 0; i <= n; ++i){
+        homnay[i][i] = true;
+    }
     while(!checkFinish()){
         ll soKetNoi = 0;
         bool ngaymai[60][60];
-//        for(int i = 0; i < 51; ++i){
-//            for(int j = 0; j < 51; ++j){
-//                ngaymai[i][j] = homnay[i][j];
+        for(int i = 1; i <= n; ++i){
+            for(int j = 1; j <= n; ++j){
+                ngaymai[i][j] = homnay[i][j];
 //                cout << ngaymai[i][j] << " ";
-//            }
+            }
 //            cout << "\n";
-//        }
+        }
 //        cout << "\n";
         for(int i = 1; i <= n; ++i){
             for(int j = 1; j <= n; ++j){
+                if(i == j) continue;
                 if(homnay[i][j] == true){
                     for(int k = 1; k <= n; ++k){
                         if(homnay[j][k] == true){
-                            if(homnay[i][k] == false){
+                            if(ngaymai[i][k] == false){
                                 ngaymai[i][k] = true;
-                                soKetNoi += 1;
-                            }
-                            if(homnay[k][i] == false){
                                 ngaymai[k][i] = true;
                                 soKetNoi += 1;
                             }
@@ -62,6 +63,13 @@ void fridlist(){
             }
         }
     }
+//    for(int i = 1; i <= n; ++i){
+//            for(int j = 1; j <= n; ++j){
+//                cout << homnay[i][j] << " ";
+//            }
+//            cout << "\n";
+//        }
+//        cout << "\n";
     cout << res.size() << "\n";
     for(int i = 0; i < res.size(); ++i){
         cout << res[i] << "\n";
@@ -69,8 +77,8 @@ void fridlist(){
 }
 
 int main(){
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("FRIDLIST.INP", "r", stdin);
+    freopen("FRIDLIST.OUT", "w", stdout);
     readData();
     fridlist();
     return 0;
