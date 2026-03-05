@@ -74,6 +74,11 @@ void tru(string &a, string &b){
     a = temp;
 }
 
+bool lonHon(string &a, string & b){
+    if(a.size() != b.size()) return a.size() > b.size();
+    return a > b;
+}
+
 void reg_coor(){
     string canh;
     canh.push_back('1');
@@ -83,15 +88,18 @@ void reg_coor(){
     chia2(canh);
     string res;
     res.push_back('t');
+//    string tempx, tempy;
     while(x != canh && y != canh){
-        if(x > canh && y > canh){
+//        tempx = x;
+//        tempy = y;
+        if(lonHon(x, canh) && lonHon(y, canh)){
             res.push_back('r');
             tru(x, canh);
             tru(y, canh);
-        } else if(x < canh && y > canh){
+        } else if(!lonHon(x, canh) && lonHon(y, canh)){
             res.push_back('q');
             tru(y, canh);
-        } else if(x > canh && y < canh){
+        } else if(lonHon(x, canh) && !lonHon(y, canh)){
             res.push_back('s');
             tru(x, canh);
         } else{
@@ -111,3 +119,4 @@ int main(){
     reg_coor();
     return 0;
 }
+
