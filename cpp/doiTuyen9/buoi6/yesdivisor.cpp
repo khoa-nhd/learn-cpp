@@ -3,8 +3,8 @@ using namespace std;
 typedef long long ll;
 #define maxN 10000005
 
-ll n, k;
-ll uoc[maxN] = {};
+int n, k;
+int uoc[maxN] = {};
 
 void sangUoc(){
     for(int i = 1; i * i < maxN; ++i){
@@ -20,7 +20,7 @@ int main(){
     cin.tie(0);
     cin >> n >> k;
     sangUoc();
-    ll res = 0;
+    int res = 0;
     for(int i = 1; i <= n; ++i){
         if(uoc[i] <= k) res += 1;
     }
