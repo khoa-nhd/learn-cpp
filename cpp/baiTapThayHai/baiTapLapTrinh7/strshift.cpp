@@ -7,14 +7,14 @@ vector<string> ss, tt;
 string maxs, mins, maxt, mint;
 
 bool lonHon(string &a, string &b){
-    if(a.size() > b.size()) return true;
+    if(a.size() != b.size()) return a.size() > b.size();
     return a > b;
 }
 
 void findMaxMin(string &x, string &maxVal, string &minVal){
     for(int i = 0; i < x.size(); ++i){
-        string mot = x.substr(i, x.size()-i+1);
-        string hai = x.substr(0, i-0);
+        string mot = x.substr(i, x.size()-i);
+        string hai = x.substr(0, i);
         mot += hai;
         if(mot[0] == '0') continue;
         if(lonHon(mot, maxVal)) maxVal = mot;
@@ -47,6 +47,7 @@ string tru(string &a, string &b){
             break;
         }
     }
+    if(temp.size() == 0) temp = "0";
     return temp;
 }
 
@@ -60,6 +61,7 @@ void strshift(){
     if(lonHon(maxt, mins)){
         th2 = tru(maxt, mins);
     }
+    if(th1.size() == 0 && th2.size() == 0) cout << 0;
     if(lonHon(th1, th2)) cout << th1;
     else cout << th2;
 }

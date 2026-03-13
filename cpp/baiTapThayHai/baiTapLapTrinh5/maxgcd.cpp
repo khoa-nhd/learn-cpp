@@ -31,9 +31,6 @@ ll maxgcd(){
     for(int i = maxN; i > 0; --i){
         bool foundA = false;
         bool foundB = false;
-        if(i == 8){
-            bool here = true;
-        }
         for(int j = 1; j*i < maxN; ++j){
             if(numsA[j*i]){
                 foundA = true;

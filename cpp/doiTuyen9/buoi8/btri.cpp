@@ -50,8 +50,8 @@ ll btri(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("BTRI.INP", "r", stdin);
+    freopen("BTRI.OUT", "w", stdout);
     readData();
     ll res;
     res = btri();
