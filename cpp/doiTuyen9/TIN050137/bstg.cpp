@@ -43,8 +43,8 @@ ll bstg(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("BSTG.INP", "r", stdin);
+    freopen("BSTG.OUT", "w", stdout);
     readData();
     ll res;
     res = bstg();
