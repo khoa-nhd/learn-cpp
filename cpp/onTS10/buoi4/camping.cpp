@@ -1,32 +1,35 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-#define maxN 1000000
 
-ll n, d, a[maxN];
+set<ll> s;
+ll n, x;
 
 void readData(){
-    cin >> n >> d;
+    cin >> n >> x;
     for(int i = 0; i < n; ++i){
-        cin >> a[i];
+        ll temp;
+        cin >> temp;
+        s.insert(temp);
     }
 }
 
 ll sol(){
-    ll res = 0;
-    for(int i = 1; i < n; ++i){
-        if(abs(a[i] - a[i-1]) > d){
-            res += 1;
+    ll i = 1;
+    for(ll v : s){
+        if(v >= x){
+            return i;
         }
+        i += 1;
     }
-    return res;
+    return i;
 }
 
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+//    freopen("i.INP", "r", stdin);
+//    freopen("o.OUT", "w", stdout);
     readData();
     ll res;
     res = sol();

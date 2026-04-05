@@ -3,7 +3,7 @@ using namespace std;
 typedef long long ll;
 #define maxN 100005
 
-priority_queue<int, vector<int>, greater<int>> pq;
+vector<ll> res;
 ll n;
 pair<ll, ll> a[maxN];
 
@@ -14,17 +14,30 @@ void readData(){
     }
 }
 
+void change(ll d, ll c, ll target){
+    ll idx = -1;
+    while(d <= c){
+        ll half = (d + c) / 2;
+        if(res[half] <= target){
+            idx = half;
+            c = half - 1;
+        } else{
+            d = half + 1;
+        }
+    }
+    if(idx != -1) res[idx] = target;
+}
+
 ll sol(){
     sort(a, a + n);
     for(int i = 0; i < n; ++i){
-        if(pq.size() == 0 || pq.top() > a[i].second){
-            pq.push(a[i].second);
+        if(res.size() == 0 || res.back() > a[i].second){
+            res.push_back(a[i].second);
         } else{
-            pq.pop();
-            pq.push(a[i].second);
+            change(0, res.size() - 1, a[i].second);
         }
     }
-    return pq.size();
+    return res.size();
 }
 
 int main(){

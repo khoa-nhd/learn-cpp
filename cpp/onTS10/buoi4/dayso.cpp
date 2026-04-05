@@ -1,12 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-#define maxN 1000000
+#define maxN 100005
 
-ll n, d, a[maxN];
+ll n, x, a[maxN];
+map<ll, ll> cnt;
 
 void readData(){
-    cin >> n >> d;
+    cin >> n >> x;
     for(int i = 0; i < n; ++i){
         cin >> a[i];
     }
@@ -14,9 +15,11 @@ void readData(){
 
 ll sol(){
     ll res = 0;
-    for(int i = 1; i < n; ++i){
-        if(abs(a[i] - a[i-1]) > d){
-            res += 1;
+    for(int i = 0; i < n; ++i){
+        cnt[a[i]] += 1;
+        ll need = x - a[i] * a[i];
+        if(need > 0){
+            res += cnt[need];
         }
     }
     return res;
@@ -25,8 +28,8 @@ ll sol(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+//    freopen("i.INP", "r", stdin);
+//    freopen("o.OUT", "w", stdout);
     readData();
     ll res;
     res = sol();
