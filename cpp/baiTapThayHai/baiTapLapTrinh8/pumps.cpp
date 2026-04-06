@@ -33,8 +33,8 @@ ll pump(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("PUMP.INP", "r", stdin);
-    freopen("PUMP.OUT", "w", stdout);
+    freopen("PUMPS.INP", "r", stdin);
+    freopen("PUMPS.OUT", "w", stdout);
     cin >> n;
     for(int i = 0; i < n; ++i){
         cin >> b >> d;

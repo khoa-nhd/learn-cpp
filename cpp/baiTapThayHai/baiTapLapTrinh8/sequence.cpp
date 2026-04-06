@@ -43,8 +43,8 @@ ll sequence(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("SEQUENCE.INP", "r", stdin);
+    freopen("SEQUENCE.OUT", "w", stdout);
     cin >> n;
 //    test();
     ll res;
