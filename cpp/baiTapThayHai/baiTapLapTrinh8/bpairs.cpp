@@ -33,8 +33,8 @@ ll bpairs(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("BPAIRS.INP", "r", stdin);
+    freopen("BPAIRS.OUT", "w", stdout);
     readData();
     ll res;
     res = bpairs();
