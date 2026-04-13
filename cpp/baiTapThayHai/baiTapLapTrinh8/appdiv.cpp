@@ -24,8 +24,8 @@ void appdiv(ll i, ll sum1, ll sum2){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("APPDIV.INP", "r", stdin);
+    freopen("APPDIV.OUT", "w", stdout);
     readData();
     appdiv(0, 0, 0);
     cout << res;
