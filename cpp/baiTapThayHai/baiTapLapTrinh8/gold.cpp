@@ -32,8 +32,8 @@ void gold(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("GOLD.INP", "r", stdin);
+    freopen("GOLD.OUT", "w", stdout);
     readData();
     gold();
     return 0;
