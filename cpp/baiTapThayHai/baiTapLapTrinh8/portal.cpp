@@ -34,7 +34,9 @@ ll minDist(ll curr){
 
 ll portal(){
     sort(x, x + n);
-    return minDist(a) + minDist(b) + 1;
+    ll mot = minDist(a) + minDist(b) + 1;
+    ll hai = abs(a - b);
+    return min(mot, hai);
 }
 
  int main(){

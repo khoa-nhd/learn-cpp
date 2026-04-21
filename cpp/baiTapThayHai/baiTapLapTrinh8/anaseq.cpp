@@ -53,8 +53,8 @@ void anaseq(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("ANASEQ.INP", "r", stdin);
+    freopen("ANASEQ.OUT", "w", stdout);
     readData();
     anaseq();
     return 0;

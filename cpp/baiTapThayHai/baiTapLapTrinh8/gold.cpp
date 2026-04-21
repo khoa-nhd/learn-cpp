@@ -4,6 +4,7 @@ typedef long long ll;
 
 ll n, s, a[1005];
 ll dp[50005] = {};
+ll soMod = 1e9 + 7;
 
 void readData(){
     cin >> n >> s;
@@ -16,13 +17,14 @@ void gold(){
     dp[0] = 1;
     for(int i = 0; i < n; ++i){
         for(int j = s; j > 0; --j){
-            if(j - a[i] >= 0) dp[j] += dp[j-a[i]];
+            if(j - a[i] >= 0) dp[j] += dp[j-a[i]] % soMod;
+            dp[j] %= soMod;
         }
     }
-    for(int i = s; i >= 0; --i){
+    for(int i = s; i > 0; --i){
         if(dp[i]){
             cout << i << "\n";
-            cout << dp[i] % (ll)(1e9 + 7);
+            cout << dp[i];
             return;
         }
     }

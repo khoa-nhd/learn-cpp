@@ -15,16 +15,19 @@ void readData(){
 }
 
 bool check(ll x){
-    ll m = x + (p-1);
-    m /= p;
+    ll m = x / p;
     ll s = 0;
+    ll c = x % p;
     for(int i = 0; i < k; ++i){
-        s += min(a[i], m);
+        if(c > 0) s += min(a[i], m+1);
+        else s += min(a[i], m);
+        if(min(a[i], m) == m) c -= 1;
     }
     return s >= x;
 }
 
 ll trees(){
+    sort(a, a + k, greater<ll>());
     ll d = 0, c = sum;
     ll res = -1;
     while(d <= c){
