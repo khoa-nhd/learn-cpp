@@ -1,53 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-#define maxN 100005
 
-ll n, m, a[maxN], b[maxN];
-unordered_map<ll, ll> uma, umb;
+ll n, a, b, c;
 
-void readData(){
-    cin >> n;
-    for(int i = 0; i < n; ++i){
-        cin >> a[i];
-    }
-    cin >> m;
-    for(int i = 0; i < m; ++i){
-        cin >> b[i];
-    }
-}
-
-void anaseq(){
-    if(m < n){
-        cout << "NO";
-        return;
-    }
-    ll diff = n;
-    for(int i = 0; i < n; ++i){
-        uma[a[i]] += 1;
-    }
-    for(int i = 0; i < n; ++i){
-        if(umb[b[i]] < uma[b[i]]) diff -= 1;
-        umb[b[i]] += 1;
-    }
+ll calDuoi(ll t){
+    ll lo = 0, hi = t;
     ll res = -1;
-    if(diff == 0){
-        cout << "YES" << "\n";
-        cout << 1;
-        return;
-    }
-    for(int i = n; i < m; ++i){
-        if(umb[b[i]] < uma[b[i]]) diff -= 1;
-        umb[b[i]] += 1;
-        if(umb[b[i-n]] <= uma[b[i-n]]) diff += 1;
-        umb[b[i-n]] -= 1;
-        if(diff == 0){
-            cout << "YES" << "\n";
-            cout << i-n+2;
-            return;
+    while(lo <= hi){
+        ll half = (lo + hi) / 2;
+        if(a * half <= c * t + b * (t - half - 1)){
+            res = half;
+            lo = half + 1;
+        } else{
+            hi = half - 1;
         }
     }
-    cout << "NO";
+    ll ans = c * t + b * (t - res -1);
+    if(res < t) ans = min(ans, a * (res + 1));
+    return ans;
+}
+
+ll lift(){
+    ll lo = 0, hi = n;
+    ll res = -1;
+    while(lo <= hi){
+        ll half = (lo + hi) / 2;
+        ll duoi = calDuoi(half);
+        if(duoi <= c*half + a*(n-half)){
+            res = half;
+            lo = half + 1;
+        } else{
+            hi = half - 1;
+        }
+    }
+    ll ans = c*res + a*(n-res);
+    if(res < n) ans = min(ans, calDuoi(res + 1));
+    return ans;
 }
 
 int main(){
@@ -55,7 +44,9 @@ int main(){
     cin.tie(0);
     freopen("i.INP", "r", stdin);
     freopen("o.OUT", "w", stdout);
-    readData();
-    anaseq();
+    cin >> n >> a >> b >> c;
+    ll res;
+    res = lift();
+    cout << lift();
     return 0;
 }
