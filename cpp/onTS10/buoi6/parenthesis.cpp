@@ -21,7 +21,7 @@ bool check(){
             else mo -= 1;
             maxMo += 1;
         }
-        if(mo < 0) mo = 0;
+        if(mo < 0) mo = 1;
         if(maxMo < 0) return false;
     }
     return mo == 0;
@@ -30,8 +30,8 @@ bool check(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+//    freopen("i.INP", "r", stdin);
+//    freopen("o.OUT", "w", stdout);
     cin >> t;
     for(int i = 0; i < t; ++i){
         cin >> s;
