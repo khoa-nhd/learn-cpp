@@ -3,39 +3,38 @@ using namespace std;
 typedef long long ll;
 
 string s;
-ll dp[205][205];
 
 void correct(){
-    ll m = -1e9;
+    ll mo = 0;
     ll n = s.size();
-    for(int i = 0; i < n; ++i){
-        for(int j = 0; j < n; ++j){
-            dp[i][j] = m;
-        }
-    }
-    dp[0][0] = 0;
-    for(int i = 0; i < n; ++i){
-        for(int j = 0; j < n; ++j){
-            if(dp[i][j] < 0) continue;
-            if(j + 1 <= n) dp[i+1][j+1] = max(dp[i+1][j+1], dp[i][j] + (s[i] == '('));
-            if(j - 1 >= 0) dp[i+1][j-1] = max(dp[i+1][j-1], dp[i][j] + (s[i] == ')'));
-        }
-    }
     string res;
-    ll i = n;
-    ll j = 0;
-    while(i > 0){
-        if(j > 0 && dp[i][j] == dp[i-1][j-1] + (s[i-1] == '(')){
-            res.push_back('(');
-            j -= 1;
+    for(int i = 0; i < n; ++i){
+        if(s[i] == '('){
+            res.push_back(s[i]);
+            mo += 1;
         } else{
-            res.push_back(')');
-            j += 1;
+            if(mo > 0){
+                mo -= 1;
+                res.push_back(')');
+            } else{
+                mo += 1;
+                res.push_back('(');
+            }
         }
-        i -= 1;
     }
-    reverse(res.begin(), res.end());
-    cout << n - dp[n][0] << "\n" << res;
+    for(int i = n-1; i >= 0; --i){
+        if(mo == 0) break;
+        if(res[i] == '('){
+            res[i] = ')';
+            mo -= 2;
+        }
+    }
+    ll khac = 0;
+    for(int i = 0; i < n; ++i){
+        khac += (res[i] != s[i]);
+    }
+    cout << khac << "\n";
+    cout << res;
 }
 
 int main(){

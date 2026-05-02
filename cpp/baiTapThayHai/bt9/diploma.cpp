@@ -33,6 +33,7 @@ bool check(ll k){
 }
 
 ll diploma(){
+    if(n == 1) return 1;
     ll d = 1, c = n;
     ll res = -1;
     while(d <= c){

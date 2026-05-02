@@ -4,7 +4,7 @@ typedef long long ll;
 #define maxN 1000005
 
 int uoc[maxN] = {};
-int maxUoc[maxN] = {};
+ll res[maxN] = {};
 int k;
 
 void sangUoc(){
@@ -14,18 +14,18 @@ void sangUoc(){
             uoc[i*j] += 2;
         }
     }
-    maxUoc[0] = 0;
-    for(int i = 1; i < maxN; ++i){
-        maxUoc[i] = max(maxUoc[i-1], uoc[i]);
-    }
 }
 
-int an_pri(){
-    if(k <= 0) cout << 0;
-    for(int i = k; i >= 0; --i){
-        if(uoc[i] >= maxUoc[i-1]) return i;
+void an_pri(){
+    ll maxx = 0;
+    ll antiprime = 1;
+    for(int i = 1; i < maxN; ++i){
+        if(uoc[i] > maxx){
+            maxx = uoc[i];
+            antiprime = i;
+        }
+        res[i] = antiprime;
     }
-    return 1;
 }
 
 int main(){
@@ -38,9 +38,7 @@ int main(){
     cin >> m;
     for(int i = 0; i < m; ++i){
         cin >> k;
-        int res;
-        res = an_pri();
-        cout << res << "\n";
+        cout << res[i] << "\n";
     }
     return 0;
 }

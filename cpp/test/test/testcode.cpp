@@ -1,66 +1,32 @@
-#include <iostream>
-#include <vector>
-
+#include <bits/stdc++.h>
 using namespace std;
-
 typedef long long ll;
 
-void merge(vector<ll>& left, vector<ll>& right, vector<ll>& res) {
-    ll i = 0, j = 0;
+ll n;
+vector<ll> v;
 
-    while (i < left.size() || j < right.size()) {
-        if (i < left.size() && j < right.size()) {
-            if (left[i] < right[j]) {
-                res.push_back(left[i]);
-                i++;
-            } else {
-                res.push_back(right[j]);
-                j++;
-            }
-        }
-        else if (i < left.size()) {
-            res.push_back(left[i]);
-            i++;
-        }
-        else {
-            res.push_back(right[j]);
-            j++;
-        }
+void chuyen(){
+    n += 1;
+    while(n > 0){
+        v.push_back(n % 10);
+        n /= 10;
+    }
+    reverse(v.begin(), v.end());
+}
+
+void ocd(){
+    for(int i = 0; i < v.size(); ++i){
+        if(v[i] > )
     }
 }
 
-vector<ll> mergeSort(vector<ll>& a, ll l, ll r) {
-    vector<ll> res;
-
-    if (l == r) {
-        res.push_back(a[l]);
-        return res;
-    }
-
-    ll mid = (l + r) / 2;
-
-    vector<ll> left = mergeSort(a, l, mid);
-    vector<ll> right = mergeSort(a, mid + 1, r);
-
-    merge(left, right, res);
-
-    return res;
-}
-
-int main() {
-    int n;
+int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    freopen("i.INP", "r", stdin);
+    freopen("o.OUT", "w", stdout);
     cin >> n;
-
-    vector<ll> nums(n);
-    for(int i = 0; i < n; i++) {
-        cin >> nums[i];
-    }
-
-    vector<ll> sorted = mergeSort(nums, 0, n - 1);
-
-    for(ll x : sorted) {
-        cout << x << " ";
-    }
-
+    chuyen();
+    ocd();
     return 0;
 }
