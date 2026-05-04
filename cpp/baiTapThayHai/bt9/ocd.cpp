@@ -1,60 +1,86 @@
 #include <bits/stdc++.h>
 using namespace std;
-typedef long long ll;
+typedef unsigned long long ll;
 
 ll n;
 
-ll ocd(bool ld){
-    vector<ll> v;
-    ll x = n;
+ll getidx(ll x){
+    ll res = 0;
     while(x > 0){
-        v.push_back(x % 10);
+        x /= 10;
+        res += 1;
+    }
+    return res - 1;
+}
+
+ll get10(ll x){
+    ll res = 1;
+    while(x > 0){
+        res *= 10;
         x /= 10;
     }
-    reverse(v.begin(), v.end());
-    for(int i = 1; i < v.size(); ++i){
-        if(v[i] == v[i-1]){
-            v[i] += 1;
-            if(v[i] == 10){
-                v[i] = 0;
-                for(int j = i-1; j >= 0; --j){
-                    if(v[j] == 9 && j == 0){
-                        ll res = 0;
-                        for(int k = 0; k < v.size() + 1; ++k){
-                            res *= 10;
-                            res += (k+1) % 2;
-                        }
-                        return res;
-                    }
-                    if(v[j] == 9) v[j] = 0;
-                    else{
-                        v[j] += 1;
-                        break;
-                    }
-                }
-            }
-            n = 0;
-            for(int i = 0; i < v.size(); ++i){
-                n *= 10;
-                n += v[i];
-            }
-            return ocd(false);
+    res /= 10;
+    return res;
+}
+
+ll tang(ll x, ll idx){
+    ll ten = get10(x) / 10;
+    ll i = 0;
+    while(ten > 0 && i < idx){
+        ll num = (x / ten) % 10;
+        ll prevNum = (x / (ten * 10)) % 10;
+        if(num == prevNum){
+            x += ten;
+            return tang(x, i);
         }
+        ten /= 10;
+        i += 1;
     }
-    if(ld){
-        n += 1;
-        return ocd(false);
+    return x;
+}
+
+void giam(ll x){
+    ll ten1 = get10(x);
+    ll ten2 = get10(n);
+    if(ten1 > ten2){
+        cout << x / ten1 % 10;
+        bool so = 0;
+        x /= 10;
+        while(x > 0){
+            cout << so;
+            so = !so;
+            x /= 10;
+        }
+        return;
     }
-    return n;
+    while(ten1 > 0){
+        ll numN = n / ten1 % 10;
+        ll numX = x / ten1 % 10;
+        if(numX > numN){
+            cout << numX;
+            ten1 /= 10;
+            bool so = 0;
+            while(ten1 > 0){
+                cout << so;
+                so = !so;
+                ten1 /= 10;
+            }
+            return;
+        }
+        cout << numX;
+        ten1 /= 10;
+    }
 }
 
 int main(){
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
     freopen("OCD.INP", "r", stdin);
     freopen("OCD.OUT", "w", stdout);
     cin >> n;
-    ll res;
-    res = ocd(true);
-    cout << res;
+    n += 1;
+    ll idx = getidx(n);
+    ll t = tang(n, idx);
+    giam(t);
     return 0;
 }
-

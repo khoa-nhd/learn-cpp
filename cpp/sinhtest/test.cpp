@@ -1,37 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
+typedef long long ll;
 
-mt19937 rng(7777);
+mt19937 rng(16);
+const int test = 100;
 
-int rnd(int l, int r){
-    return l + abs((int)rng()) % (r - l + 1);
+ll rnd(ll l, ll r){
+    return l + (abs((ll)rng() % (r-l+1)));
 }
 
 void gen(){
     ofstream inp("i.inp");
-    int n = rnd(1, 1e3);
-    int s = rnd(-1e9, 1e9);
-    inp << n << " " << s << "\n";
-    for(int i = 0; i < n; ++i){
-        int a = rnd(-1e9, 1e9);
-        inp << a << " ";
-    }
+    ll a, b;
+    a = rnd(1, 1e10);
+    b = rnd(1, 1e10);
+    inp << a << " " << b;
     inp.close();
 }
 
 bool check(){
-    return system("fc o.out o.ans") == 0;
+    if(system("fc o.out o.ans") != 0){
+        return false;
+    }
+    return true;
 }
 
 int main(){
-    for(int i = 1; i <= 10000; ++i){
+    for(int i = 1; i <= test; ++i){
         gen();
         system("task.exe");
         system("task_trau.exe");
-        if(check()) cout << "test: " << i << " AC\n";
+        bool ok = check();
+        cout << "test: " << i;
+        if(ok) cout << " AC\n";
         else{
-            cout << "test: " << i << " WA\n";
-            return 0;
+            cout << " WA\n";
+//            return 0;
         }
     }
     return 0;
