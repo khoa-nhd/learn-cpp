@@ -15,12 +15,17 @@ void readData(){
 }
 
 ll wheel(){
-    a = (a - k + 1) / k;
-    b = (b - k + 1) / k;
+    a = (a-1) / k;
+    b = (b-1) / k;
     ll res = LLONG_MIN;
-    for(int i = a; i <= b && i < n; ++i){
-        res = max(res, arr[i]);
-        if(i != 0) res = max(res, arr[n-i]);
+    if(b - a > n){
+        for(int i = 0; i < n; ++i) res = max(res, arr[i]);
+        return res;
+    }
+    for(int i = a; i <= b; ++i){
+        ll buoc = i % n;
+        res = max(res, arr[buoc]);
+        res = max(res, arr[(n-buoc)%n]);
     }
     return res;
 }

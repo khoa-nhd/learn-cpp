@@ -6,18 +6,21 @@ ll h, w;
 ll a[1005][1005] = {};
 ll ci[] = {-1, 0, 1, 0};
 ll cj[] = {0, 1, 0, -1};
+ll khong = 0;
 
 void readData(){
     cin >> h >> w;
     for(int i = 1; i <= h; ++i){
         for(int j = 1; j <= w; ++j){
             cin >> a[i][j];
+            if(!a[i][j]) khong += 1;
         }
     }
 }
 
 ll surface(){
     ll res = 2 * w * h;
+    res -= 2 * khong;
     for(int i = 1; i <= h; ++i){
         for(int j = 1; j <= w; ++j){
             for(int k = 0; k < 4; ++k){

@@ -1,16 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
+typedef long double ld;
 
 ll n;
 struct diem{
-    double x, y;
+    ld x, y;
 }arr[205];
 struct tron{
-    double x, y, r;
+    ld x, y, r;
 };
 tron ans;
-bool tren[205] = {};
 
 void readData(){
     cin >> n;
@@ -19,48 +19,45 @@ void readData(){
     }
 }
 
-double dist(diem a, diem b){
+ld dist(diem a, diem b){
     return sqrt((a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y));
 }
 
-bool valid(tron t){
-    diem tt;
-    tt.x = t.x;
-    tt.y = t.y;
+ld distmu2(diem a, diem b){
+    return (a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y);
+}
+
+void update(ld x, ld y){
+    ld maxR = 0;
     for(int i = 0; i < n; ++i){
-        if(dist(tt, arr[i]) > t.r && !tren[i]) return false;
+        ld r = distmu2({x, y}, arr[i]);
+        maxR = max(maxR, r);
     }
-    return true;
+    if(maxR < ans.r*ans.r){
+        ld curr = sqrt(maxR);
+        ans = {x, y, curr};
+    }
 }
 
 void hai(diem a, diem b){
-    tron t;
-    t.r = dist(a, b) / 2;
-    t.x = (a.x+b.x) / 2;
-    t.y = (a.y+b.y) / 2;
-    if(t.r < ans.r && valid(t)){
-        ans = t;
-    }
+    ld x = (a.x+b.x) / 2.0;
+    ld y = (a.y+b.y) / 2.0;
+    update(x, y);
 }
 
 void ba(diem a, diem b, diem c){
-    double a1, a2, b1, b2, c1, c2;
+    ld a1, a2, b1, b2, c1, c2;
     a1 = 2*(a.x - b.x); b1 = 2*(a.y - b.y);
     c1 = a.x*a.x - b.x*b.x + a.y*a.y - b.y*b.y;
     a2 = 2*(b.x - c.x); b2 = 2*(b.y - c.y);
     c2 = b.x*b.x - c.x*c.x + b.y*b.y - c.y*c.y;
-    double d = a1*b2 - a2*b1;
+    ld d = a1*b2 - a2*b1;
     if(d == 0) return;
-    double dx = c1*b2 - c2*b1;
-    double dy = a1*c2 - a2*c1;
-    tron t;
-    diem tam;
-    t.x = tam.x = dx/d;
-    t.y = tam.y = dy/d;
-    t.r = dist(tam, a);
-    if(t.r < ans.r && valid(t)){
-        ans = t;
-    }
+    ld dx = c1*b2 - c2*b1;
+    ld dy = a1*c2 - a2*c1;
+    ld x = dx/d;
+    ld y = dy/d;
+    update(x, y);
 }
 
 void telecom(){
@@ -68,20 +65,16 @@ void telecom(){
         cout << fixed << setprecision(6) << arr[0].x << " " << arr[0].y << " " << 0.0;
         return;
     }
-    ans.r = LLONG_MAX;
     for(int i = 0; i < n; ++i){
         for(int j = i + 1; j < n; ++j){
-            tren[i] = tren[j] = true;
             hai(arr[i], arr[j]);
-            tren[i] = tren[j] = false;
         }
     }
+    ans.r = 1e18;
     for(int i = 0; i < n; ++i){
         for(int j = i + 1; j < n; ++j){
             for(int k = j + 1; k < n; ++k){
-                tren[i] = tren[j] = tren[k] = true;
                 ba(arr[i], arr[j], arr[k]);
-                tren[i] = tren[j] = tren[k] = false;
             }
         }
     }

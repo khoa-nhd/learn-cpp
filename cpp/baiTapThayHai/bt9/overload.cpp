@@ -26,8 +26,8 @@ void overload(){
     for(int i = n-1; i >= 0; --i){
         auto it = ms.lower_bound({a[i], -1});
         if(it != ms.end()){
-            ms.erase(it);
             res[i] = (*it).second+1;
+            ms.erase(it);
         }
     }
     for(int i = 0; i < n; ++i) cout << res[i] << "\n";
