@@ -57,8 +57,8 @@ void envil(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("ENVIL.INP", "r", stdin);
-    freopen("ENVIL.OUT", "w", stdout);
+    freopen("ENVEL.INP", "r", stdin);
+    freopen("ENVEL.OUT", "w", stdout);
     readData();
     envil();
     return 0;

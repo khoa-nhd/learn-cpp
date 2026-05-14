@@ -16,34 +16,27 @@ void readData(){
 }
 
 ll candies(){
-    sort(a, a + n, greater<ll>());
-    ll tru[maxN] = {};
+    sort(a, a + n);
+    ll thatvong = sum - m;
     ll res = 0;
-    for(int i = 0; i < n - 1; ++i){
-        tru[0] -= (a[i] - a[i+1]);
-        if(m >= (a[i] - a[i+1]) * (i + 1)){
-            m -= (a[i] - a[i+1]) * (i + 1);
-            tru[i+1] += (a[i] - a[i+1]);
-        } else{
-            ll d = m / (a[i] - a[i+1]);
-            tru[d] += (a[i] - a[i+1]);
-            tru[d+1] -= m - m * d;
-            tru[d+2] += m - m * d;
-            m = 0;
-            break;
-        }
+    if(thatvong <= 0) return 0;
+    for(int i = 0; i < n; ++i){
+        ll soNg = n - i;
+        ll tv = min(a[i], thatvong / soNg);
+        res += tv*tv;
+        thatvong -= tv;
     }
-    if(m > 0){
-        ll d = m / a[n-1]
-    }
+    return res;
 }
 
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("CANDIES.INP", "r", stdin);
+    freopen("CANDIES.OUT", "w", stdout);
     readData();
-
+    ll res;
+    res = candies();
+    cout << res;
     return 0;
 }
