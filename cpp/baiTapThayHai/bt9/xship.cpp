@@ -41,7 +41,7 @@ ll xship(){
         res += pre[duong] + change * (duong + 1);
     }
     if(duong != n - 1){
-        res += abs(suf[duong+1] + change * (n - (duong+1)));
+        res += -suf[duong+1] - change * (n - (duong+1);
     }
     return res;
 }
