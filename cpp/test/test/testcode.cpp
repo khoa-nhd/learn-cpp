@@ -1,89 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 typedef long long ll;
-
-ll n;
-string s;
-ll cnt[30], cnt2[30], dd[200005];
-deque<ll> dq[30];
-vector<ll> mcd;
-ll res = 0;
-
-bool sub1(){
-    for(int i = 1; i < n; ++i){
-        if(s[i] != s[i-1]) return false;;
-    }
-    for(int i = n+1; i < 2 * n; ++i){
-        if(s[i] != s[i-1]) return false;
-    }
-    return true;
-}
-
-vector<ll> inversionCount(vector<ll> v){
-    if(v.size() == 1){
-        return v;
-    }
-    vector<ll> l;
-    vector<ll> r;
-    for(int i = 0; i < v.size() / 2; ++i){
-        l.push_back(v[i]);
-    }
-    for(int i = v.size() / 2; i < v.size(); ++i){
-        r.push_back(v[i]);
-    }
-    vector<ll> re;
-    l = inversionCount(l);
-    r = inversionCount(r);
-    ll il = 0, ir = 0;
-    while(il < l.size() && ir < r.size()){
-        if(l[il] < r[ir]) re.push_back(l[il++]);
-        else{
-            re.push_back(r[ir++]);
-            res += l.size() - il;
+double findn(vector<int>& nums1, vector<int>& nums2, int x){
+    int d = 0, c = nums1.size()-1;
+    int res = 10000000;
+    while(d <= c){
+        int half = (d + c) / 2;
+        int v = half;
+        v += upper_bound(nums2.begin(), nums2.end(), nums1[half]) - nums2.begin();
+        if(v >= x){
+            c = half - 1;
+            res = nums1[half];
+        } else{
+            d = half + 1;
         }
     }
-    while(il < l.size()) re.push_back(l[il++]);
-    while(ir < r.size()) re.push_back(r[ir++]);
-    return re;
+    return res;
 }
-
-void sub3(){
-    ll them = 0;
-    for(int i = 0; i < n; ++i){
-        cnt[s[i] - 'a'] += 1;
+double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+    int x = nums1.size() + nums2.size();
+    double res = 0;
+    if(x % 2 == 1){
+        res = min(findn(nums1, nums2, x / 2), findn(nums2, nums1, x / 2));
+    } else{
+        res = min(findn(nums1, nums2, x / 2 - 1), findn(nums2, nums1, x / 2 - 1));
+        double res2;
+        res2 = min(findn(nums1, nums2, x / 2), findn(nums2, nums1, x / 2));
+        res += res2;
+        res /= 2;
     }
-    for(int i = 0; i < n; ++i){
-        cnt2[s[i] - 'a'] += 1;
-        if(cnt2[s[i] - 'a'] * 2 > cnt[s[i] - 'a']) dd[i] = 1;
-        else dd[i] = 0;
-    }
-    ll pref1 = 0;
-    for(int i = 0; i < n; ++i){
-        if(dd[i] == 0) them += pref1;
-        else pref1 += 1;
-    }
-
-    ll idx = 0;
-    for(int i = 0; i < n; ++i){
-        if(dd[i] == 0) dq[s[i]-'a'].push_back(idx++);
-        else{
-            mcd.push_back(dq[s[i]-'a'].front());
-            dq[s[i]-'a'].pop_front();
-        }
-    }
-    res += them;
-
-    inversionCount(mcd);
+    return res;
 }
-
 int main(){
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
-    cin >> n >> s;
-    n *= 2;
-    sub3();
+    vector<int> nums1 = {1,3};
+    vector<int> nums2 = {2};
+    double res;
+    res = findMedianSortedArrays(nums1, nums2);
     cout << res;
     return 0;
 }
