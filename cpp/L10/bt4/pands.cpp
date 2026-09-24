@@ -39,8 +39,8 @@ void sol(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("PANDS.INP", "r", stdin);
+    freopen("PANDS.OUT", "w", stdout);
     readData();
     sol();
     return 0;
