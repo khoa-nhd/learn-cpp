@@ -4,7 +4,7 @@ typedef long long ll;
 #define maxN 200005
 
 ll n, a[maxN];
-ll res;
+ll res = 0;
 
 void readData(){
     cin >> n;
@@ -18,6 +18,20 @@ void nhap(ll l, ll r){
     ll half = (l + r) / 2;
     ll i = l, j = half + 1;
     while(i <= half && j <= r){
+        if(a[i] <= a[j]*2){
+            i += 1;
+        } else{
+            j += 1;
+            res += half - i + 1;
+//            cout << a[j] << "\n";
+//            for(int k = l; k < i; ++k){
+//                cout << a[i] * 2 << " ";
+//            }
+//            cout << "\n\n";
+        }
+    }
+    i = l; j = half + 1;
+    while(i <= half && j <= r){
         if(a[i] <= a[j]){
             v.push_back(a[i]);
             i += 1;
@@ -26,17 +40,19 @@ void nhap(ll l, ll r){
             j += 1;
         }
     }
-    while(i <= half) v.push_back(a[i]);
-    while(j <= r) v.push_back(a[j]);
+    while(i <= half)v.push_back(a[i++]);
+    while(j <= r) v.push_back(a[j++]);
     i = 0;
     for(int k = l; k <= r; ++k){
         a[k] = v[i];
         i += 1;
     }
+    i = l; j = half + 1;
+
 }
 
 void split(ll l, ll r){
-    if(l == r) return;
+    if(l >= r) return;
     ll half = (l + r) / 2;
     split(l, half);
     split(half + 1, r);
@@ -51,13 +67,13 @@ void sol(){
 int main(){
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    freopen("i.INP", "r", stdin);
-    freopen("o.OUT", "w", stdout);
+    freopen("PAIRINV.INP", "r", stdin);
+    freopen("PAIRINV.OUT", "w", stdout);
     readData();
     sol();
-    cout << "\n";
-    for(int i = 0; i < n; ++i){
-        cout << a[i];
-    }
+//    cout << "\n";
+//    for(int i = 0; i < n; ++i){
+//        cout << a[i];
+//    }
     return 0;
 }
